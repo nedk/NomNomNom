@@ -1,0 +1,10 @@
+This file indicates the milstones of this project
+M0: Initialized and start the project
+M1: Make simple UI 
+    Use the University Plaza (beside waterloo)
+M2: Make options available (eg. Chinese, Western, Mediterinian, etc.)
+M3: Using AndEngine or similar engine to improve UI
+M4: Make food places other than UW plaza available
+    eg. Eaton centre food court (Urban eatery or something)
+M5: Manual Input of choices
+M6: Google map implementation
