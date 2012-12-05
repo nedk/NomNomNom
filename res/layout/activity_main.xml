@@ -5,10 +5,24 @@
     tools:context=".MainActivity" >
 
     <TextView
+        android:id="@+id/tvMainOutput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="67dp"
         android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/btnGetNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="44dp"
+        android:enabled="true"
+        android:includeFontPadding="false"
+        android:text="@string/btn_get_new_res_text"
+        android:onClick="getNewRestaurant"/>
 
 </RelativeLayout>
