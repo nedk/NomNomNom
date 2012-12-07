@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
+	
 	private Vector<String> getListOfPlacesToEat() {
 		Vector<String> vsListOfPlacesToEat = new Vector<String>(1);
 		vsListOfPlacesToEat.addElement("Sogo√¿ ≥"); // English and Chinese mixed
