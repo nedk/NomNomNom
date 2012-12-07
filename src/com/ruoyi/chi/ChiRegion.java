@@ -5,11 +5,12 @@ import java.util.ArrayList;
 public class ChiRegion {
 	private String sName;
 	private String sRegiionType;
-	private ArrayList<ChiRestaurant> alResturants = new ArrayList<ChiRestaurant>(1);
+	private ArrayList<ChiRestaurant> alResturants;
 	
 	public ChiRegion(String sName, String sType){
 		this.sName = sName;
 		this.sRegiionType = sType;
+		this.alResturants = new ArrayList<ChiRestaurant>(1);
 	}	
 	public ChiRegion(String sName, String sType, ArrayList<ChiRestaurant> alResturants){
 		this.sName = sName;
