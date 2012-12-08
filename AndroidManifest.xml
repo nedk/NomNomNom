@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ruoyi.chi"
+    package="com.ruoyiwang.chi"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.ruoyi.chi.MainActivity"
+            android:name="com.ruoyiwang.chi.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,12 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ruoyi.chi.DisplayMessageActivity"
+            android:name="com.ruoyiwang.chi.DisplayMessageActivity"
             android:label="@string/title_activity_display_message"
-            android:parentActivityName="com.ruoyi.chi.MainActivity" >
+            android:parentActivityName="com.ruoyiwang.chi.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ruoyi.chi.MainActivity" />
+                android:value="com.ruoyiwang.chi.MainActivity" />
         </activity>
     </application>
 
