@@ -7,7 +7,10 @@ public class ChiRestaurant{
 	protected void setRestaurantName(String sName){
 		this.sName = sName;
 	}
-	protected String getRestaurantName(){
+	public String getRestaurantName(){
+		return this.sName;
+	}
+	public String name(){
 		return this.sName;
 	}
 	public String getAddress() {
