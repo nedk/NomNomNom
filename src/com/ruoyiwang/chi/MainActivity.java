@@ -2,7 +2,8 @@ package com.ruoyiwang.chi;
 
 import java.util.ArrayList;
 import com.ruoyiwang.chi.R;
-import com.ruoyiwang.chi.model.*;
+import com.ruoyiwang.chi.model.ChiRegion;
+import com.ruoyiwang.chi.model.ChiRestaurant;
 
 import android.app.Activity;
 import android.os.Bundle;
