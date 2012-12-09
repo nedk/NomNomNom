@@ -1,15 +1,17 @@
 package com.ruoyiwang.chi;
 
 import java.util.ArrayList;
-import com.ruoyiwang.chi.R;
-import com.ruoyiwang.chi.model.ChiRegion;
-import com.ruoyiwang.chi.model.ChiRestaurant;
+import java.util.Arrays;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.ruoyiwang.chi.model.ChiRegion;
+import com.ruoyiwang.chi.model.ChiRestaurant;
 
 public class MainActivity extends Activity {
 	private ChiRegion crUwPlaza;
@@ -59,8 +61,15 @@ public class MainActivity extends Activity {
 		// Create the text view
 		TextView textView = (TextView) findViewById(R.id.tvMainOutput);
 		textView.setText(message);
-		
+		/*
 		LinearLayout vTagLayout = (LinearLayout) findViewById(R.id.lltagLayout);
+		*/
+		ListView listView = (ListView) findViewById(R.id.lvOptions);
+		String[] myStringArray = new String[2];
+		myStringArray[0]="lalala0";
+		myStringArray[1]="lalala1";
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myStringArray);
+		listView.setAdapter(adapter);
 	}
 
 	public void getNewRestaurant(View view) {
@@ -69,6 +78,7 @@ public class MainActivity extends Activity {
 		TextView textView = (TextView) findViewById(R.id.tvMainOutput);
 		textView.setText(crRandomRestaurant.name());
 		
+		/*
 		LinearLayout vTagLayout = (LinearLayout) findViewById(R.id.lltagLayout);
 		vTagLayout.removeAllViews();
 		
@@ -81,5 +91,6 @@ public class MainActivity extends Activity {
 			
 			vTagLayout.addView(tag);
 		}
+		*/
 	}
 }
