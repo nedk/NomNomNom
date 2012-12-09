@@ -22,7 +22,18 @@
         android:layout_marginTop="44dp"
         android:enabled="true"
         android:includeFontPadding="false"
-        android:text="@string/btn_get_new_res_text"
-        android:onClick="getNewRestaurant"/>
+        android:onClick="getNewRestaurant"
+        android:text="@string/btn_get_new_res_text" />
+
+    <LinearLayout
+        android:id="@+id/lltagLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnGetNew"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="52dp" 
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" >
+    </LinearLayout>
 
 </RelativeLayout>

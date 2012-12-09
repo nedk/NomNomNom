@@ -1,11 +1,13 @@
 package com.ruoyiwang.chi.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ChiRegion {
 	private String sName;
 	private String sRegiionType;
 	private ArrayList<ChiRestaurant> alResturants;
+	private HashMap<String, Integer> hmResturantTypes = new HashMap<String, Integer>(10);
 	
 	public ChiRegion(String sName, String sType){
 		this.sName = sName;
@@ -16,6 +18,29 @@ public class ChiRegion {
 		this.sName = sName;
 		this.sRegiionType = sType;
 		this.alResturants = alResturants;
+		
+		for(ChiRestaurant res: alResturants)
+			addRestaurantType(res);
+	}
+	
+	private void addRestaurantType(ChiRestaurant crRes){
+		for(String type: crRes.getTypes()){
+			if(hmResturantTypes.containsKey(type)){
+				Integer count = hmResturantTypes.get(type);
+				hmResturantTypes.put(type, ++count);
+			}
+			else
+				hmResturantTypes.put(type, 1);
+		}
+	}
+	
+	private void removeRestaurantTypes(ChiRestaurant crRes){
+		for(String type: crRes.getTypes()){
+			if(hmResturantTypes.containsKey(type)){
+				Integer count = hmResturantTypes.get(type);
+				hmResturantTypes.put(type, count--);
+			}
+		}
 	}
 	
 	//accessor and manipulator of the region type
@@ -42,6 +67,7 @@ public class ChiRegion {
 	//add and remove restaurants in this region
 	public Boolean addRestaurants(ChiRestaurant crRes){
 		Boolean bSuccess = this.alResturants.add(crRes);
+		addRestaurantType(crRes);
 		return bSuccess;
 	}
 	public Boolean removeRestaurants(ChiRestaurant crRes){
