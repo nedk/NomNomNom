@@ -2,6 +2,8 @@ package com.ruoyiwang.chi.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 public class ChiRegion {
 	private String sName;
@@ -80,5 +82,8 @@ public class ChiRegion {
 		int iKey = (int)(Math.random() * iRegionSize);
 		
 		return this.alResturants.get(iKey);
+	}
+	public Iterator<Entry<String, Integer>> getRestaurantTypeAndCounts(){
+		return hmResturantTypes.entrySet().iterator();
 	}
 }

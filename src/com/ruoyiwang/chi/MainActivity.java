@@ -1,13 +1,12 @@
 package com.ruoyiwang.chi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ruoyiwang.chi.model.ChiRegion;
@@ -61,15 +60,25 @@ public class MainActivity extends Activity {
 		// Create the text view
 		TextView textView = (TextView) findViewById(R.id.tvMainOutput);
 		textView.setText(message);
+
 		/*
-		LinearLayout vTagLayout = (LinearLayout) findViewById(R.id.lltagLayout);
-		*/
-		ListView listView = (ListView) findViewById(R.id.lvOptions);
+		ListView listView = (ExpandableListView) findViewById(R.id.expandableListView1);
 		String[] myStringArray = new String[2];
 		myStringArray[0]="lalala0";
 		myStringArray[1]="lalala1";
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myStringArray);
 		listView.setAdapter(adapter);
+		
+		ViewGroup tagAreaView = (GridLayout)findViewById(R.id.tagGrid);
+		LayoutInflater li = getLayoutInflater();
+		for(Iterator<Entry<String,Integer>> it = crUwPlaza.getRestaurantTypeAndCounts(); it.hasNext(); ){
+			TextView tagView = (TextView) li.inflate(R.layout.chi_tag, null);
+			Entry<String,Integer> entry = it.next();
+			tagView.setText(entry.getKey() + " (" + entry.getValue() + ")");
+			
+			tagAreaView.addView(tagView);
+		}
+		*/
 	}
 
 	public void getNewRestaurant(View view) {
@@ -78,19 +87,16 @@ public class MainActivity extends Activity {
 		TextView textView = (TextView) findViewById(R.id.tvMainOutput);
 		textView.setText(crRandomRestaurant.name());
 		
-		/*
 		LinearLayout vTagLayout = (LinearLayout) findViewById(R.id.lltagLayout);
 		vTagLayout.removeAllViews();
+		LayoutInflater li = getLayoutInflater();
 		
 		for (String type: crRandomRestaurant.getTypes()){
-			TextView tag = new TextView(vTagLayout.getContext());
+			TextView tagView = (TextView) li.inflate(R.layout.chi_tag, null);
 			
-			tag.setText(type);
-			tag.setBackgroundResource(R.drawable.chi_tag_shape);
-			tag.setPadding(3, 3, 3, 3);
-			
-			vTagLayout.addView(tag);
+			tagView.setText(type);
+			vTagLayout.addView(tagView);
 		}
-		*/
+		
 	}
 }
