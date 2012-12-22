@@ -6,5 +6,6 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_display_message">My message</string>
     <string name="btn_get_new_res_text">Get New Restaurant</string>
+    <string name="main_filter_slider_handle_text">Filter</string>
 
 </resources>

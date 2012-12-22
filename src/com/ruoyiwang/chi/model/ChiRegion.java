@@ -3,13 +3,15 @@ package com.ruoyiwang.chi.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class ChiRegion {
 	private String sName;
 	private String sRegiionType;
 	private ArrayList<ChiRestaurant> alResturants;
-	private HashMap<String, Integer> hmResturantTypes = new HashMap<String, Integer>(10);
+	private Map<String, Integer> hmResturantTypes = new TreeMap<String, Integer>();
 	
 	public ChiRegion(String sName, String sType){
 		this.sName = sName;

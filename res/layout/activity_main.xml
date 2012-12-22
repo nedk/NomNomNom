@@ -20,8 +20,7 @@
         android:layout_alignBottom="@+id/btnGetNew"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="52dp" 
-        android:divider="@drawable/trans_1x1"
-     	android:showDividers="middle" >
+        style="@style/tagLayout" >
     </LinearLayout>
 
     <Button
@@ -35,14 +34,46 @@
         android:onClick="getNewRestaurant"
         android:text="@string/btn_get_new_res_text" />
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/lltagLayout"
-        android:layout_marginTop="38dp" >
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnGetNew"
+        android:layout_marginRight="39dp"
+        android:layout_toLeftOf="@+id/tvMainOutput" >
+    </LinearLayout>
 
-    </ScrollView>
+    <SlidingDrawer
+        android:id="@+id/filterSlidingDrawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:content="@+id/filterSliderContent"
+        android:handle="@+id/filterSliderhandle"
+        android:layout_below="@+id/btnGetNew"  >
+
+        <Button
+            android:id="@+id/filterSliderhandle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_filter_slider_handle_text" />
+
+        <ScrollView 
+            android:id="@+id/filterSliderContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            
+            <com.ruoyiwang.chi.view.ChiTagView
+                android:id="@+id/filterTags"
+                android:layout_width="match_parent"
+            	android:layout_height="wrap_content"
+            	android:orientation="vertical"
+            	android:paddingLeft="5dp"
+            	style="@style/tagLayout" >
+            </com.ruoyiwang.chi.view.ChiTagView>
+            
+        </ScrollView>
+    </SlidingDrawer>
 
 </RelativeLayout>
