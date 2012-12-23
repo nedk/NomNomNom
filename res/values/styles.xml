@@ -16,10 +16,5 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
-    <style name="tagLayout">
-        <item name="android:divider">@drawable/trans_1x1</item>
-     	<item name="android:showDividers">middle</item>
-    </style>
 
 </resources>
