@@ -33,13 +33,17 @@ public class ChiTagView extends LinearLayout {
 		tag.measure(0, 0);
 		curWidth += tag.getMeasuredWidth();
 		
-		if(curWidth > iParentWidth - 10){
+		if(curWidth > iParentWidth - 20){
 			this.addView(curLine);
 			createNewLine();
 			curWidth += tag.getMeasuredWidth(); // curWidth was setted to 0 in createNewLine
 		}
 		
 		curLine.addView(tag);
+	}
+	
+	public void flush(){
+		this.addView(curLine);
 	}
 	
 	private void createNewLine(){

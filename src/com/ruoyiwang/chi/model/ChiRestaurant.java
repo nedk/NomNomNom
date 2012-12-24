@@ -1,9 +1,10 @@
 package com.ruoyiwang.chi.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChiRestaurant{
+public class ChiRestaurant implements Serializable{
 	private String sName;
 	private String sAddress;
 	private List<String> sTypes = new ArrayList<String>();

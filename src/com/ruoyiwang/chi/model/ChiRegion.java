@@ -1,5 +1,6 @@
 package com.ruoyiwang.chi.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,7 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-public class ChiRegion {
+public class ChiRegion implements Serializable {
 	private String sName;
 	private String sRegiionType;
 	private ArrayList<ChiRestaurant> alResturants;

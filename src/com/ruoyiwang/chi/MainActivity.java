@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -64,7 +65,6 @@ public class MainActivity extends Activity {
 		TextView textView = (TextView) findViewById(R.id.tvMainOutput);
 		textView.setText(message);
 		
-		
 		//ListView  lvOption = (ListView) findViewById(R.id.lvOption);
 		ChiTagView filterLayout = (ChiTagView) findViewById(R.id.filterTags);
 		LayoutInflater li = getLayoutInflater();
@@ -76,8 +76,22 @@ public class MainActivity extends Activity {
 			TextView tagView = (TextView) li.inflate(R.layout.chi_tag, null);
 			
 			tagView.setText(typeText);
+			tagView.setBackgroundResource(R.drawable.chi_tag_shape_stateful);
+
+			tagView.setOnClickListener(new OnClickListener(){
+				public void onClick(View v) {
+					if(v.isSelected()){
+						v.setSelected(false);
+					}
+					else{
+						v.setSelected(true);
+					}
+				}
+			});
+			
 			filterLayout.setTag(tagView);
 		}
+		filterLayout.flush();
 		
 	}
 
