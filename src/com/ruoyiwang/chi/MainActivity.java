@@ -22,6 +22,7 @@ public class MainActivity extends Activity {
 	private float mAccel; // acceleration apart from gravity
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
+	private long fLastShakeTime = 0;
 	
 	//generates the list of restaurants in university plaza beside uWaterloo
 	private ArrayList<ChiRestaurant> getListOfPlacesToEat() {
@@ -86,7 +87,6 @@ public class MainActivity extends Activity {
 	}
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
-
 		public void onSensorChanged(SensorEvent se) {
 			float x = se.values[0];
 			float y = se.values[1];
@@ -95,10 +95,12 @@ public class MainActivity extends Activity {
 			mAccelCurrent = (float) Math.sqrt((double) (x*x + y*y + z*z));
 			float delta = mAccelCurrent - mAccelLast;
 			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
-	
-			if (mAccel > 1){	//this "1" a temp value, because we don't know what yet )=
+			long fCurTime = System.currentTimeMillis();
+			if (mAccel > 2 && (fCurTime - fLastShakeTime) > 250){
+				//this "1" a temp value, because we don't know what yet )=
 				TextView textView = (TextView) findViewById(R.id.tvMainOutput);
-				textView.setText("lalala");
+				fLastShakeTime = fCurTime;
+				getNewRestaurant(textView);
 			}
 		}
 
