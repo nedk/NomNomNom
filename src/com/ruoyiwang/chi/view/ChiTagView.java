@@ -64,7 +64,7 @@ public class ChiTagView extends LinearLayout {
 		if(curWidth > iParentWidth - 20){
 			flush();	// flush all tags 
 			createNewLine();
-			curWidth += tag.getMeasuredWidth(); // curWidth was setted to 0 in createNewLine
+			curWidth += 10+tag.getMeasuredWidth(); // curWidth was setted to 0 in createNewLine
 		}
 		
 		curLine.addView(tag);
