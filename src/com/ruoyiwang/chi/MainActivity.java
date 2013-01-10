@@ -1,17 +1,22 @@
 package com.ruoyiwang.chi;
 
 import java.util.ArrayList;
-import com.ruoyiwang.chi.R;
-import com.ruoyiwang.chi.model.ChiRegion;
-import com.ruoyiwang.chi.model.ChiRestaurant;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ruoyiwang.chi.model.ChiRegion;
+import com.ruoyiwang.chi.model.ChiRestaurant;
+
 public class MainActivity extends Activity {
 	private ChiRegion crUwPlaza;
+    Intent intent = new Intent(this, SensorActivity.class);
 	//generates the list of restaurants in university plaza beside uWaterloo
 	private ArrayList<ChiRestaurant> getListOfPlacesToEat() {
 		ArrayList<ChiRestaurant> alListOfPlacesToEat = new ArrayList<ChiRestaurant>(1);
@@ -58,6 +63,7 @@ public class MainActivity extends Activity {
 		// Create the text view
 		TextView textView = (TextView) findViewById(R.id.tvMainOutput);
 		textView.setText(message);
+		//startActivity(intent);
 	}
 
 	public void getNewRestaurant(View view) {
