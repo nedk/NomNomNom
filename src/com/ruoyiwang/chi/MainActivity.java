@@ -5,6 +5,12 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +23,12 @@ import com.ruoyiwang.chi.view.ChiTagView;
 
 public class MainActivity extends Activity {
 	private ChiRegion crUwPlaza;
+	private SensorManager mSensorManager;
+	private float mAccel; // acceleration apart from gravity
+	private float mAccelCurrent; // current acceleration including gravity
+	private float mAccelLast; // last acceleration including gravity
+	private long fLastShakeTime = 0;
+	
 	//generates the list of restaurants in university plaza beside uWaterloo
 	private ArrayList<ChiRestaurant> getListOfPlacesToEat() {
 		ArrayList<ChiRestaurant> alListOfPlacesToEat = new ArrayList<ChiRestaurant>(10);
@@ -75,7 +87,14 @@ public class MainActivity extends Activity {
 			filterLayout.setTag(tagView);
 		}
 		filterLayout.flush();
+		//startActivity(intent);
 		
+		/* do this in onCreate */
+		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+		mAccel = 0.00f;
+		mAccelCurrent = SensorManager.GRAVITY_EARTH;
+		mAccelLast = SensorManager.GRAVITY_EARTH;
 	}
 
 	public void getNewRestaurant(View view) {
@@ -83,7 +102,6 @@ public class MainActivity extends Activity {
 		this.crUwPlaza.filterRestaurants(filterLayout.getAllSelectedTags());
 		
 		ChiRestaurant crRandomRestaurant = this.crUwPlaza.getRandomRestaurant();
-
 		TextView textView = (TextView) findViewById(R.id.tvMainOutput);
 		textView.setText(crRandomRestaurant.name());
 		
@@ -98,5 +116,39 @@ public class MainActivity extends Activity {
 			vTagLayout.addView(tagView);
 		}
 		
+	}
+
+	private final SensorEventListener mSensorListener = new SensorEventListener() {
+		public void onSensorChanged(SensorEvent se) {
+			float x = se.values[0];
+			float y = se.values[1];
+			float z = se.values[2];
+			mAccelLast = mAccelCurrent;
+			mAccelCurrent = (float) Math.sqrt((double) (x*x + y*y + z*z));
+			float delta = mAccelCurrent - mAccelLast;
+			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
+			long fCurTime = System.currentTimeMillis();
+			if (mAccel > 2 && (fCurTime - fLastShakeTime) > 250){
+				//this "1" a temp value, because we don't know what yet )=
+				TextView textView = (TextView) findViewById(R.id.tvMainOutput);
+				fLastShakeTime = fCurTime;
+				getNewRestaurant(textView);
+			}
+		}
+
+		public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		}
+	};
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+	}
+
+	@Override
+	protected void onPause() {
+		mSensorManager.unregisterListener(mSensorListener);
+		super.onPause();
 	}
 }
