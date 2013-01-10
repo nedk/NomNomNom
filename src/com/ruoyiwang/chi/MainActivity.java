@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -65,29 +64,13 @@ public class MainActivity extends Activity {
 		TextView textView = (TextView) findViewById(R.id.tvMainOutput);
 		textView.setText(message);
 		
-		//ListView  lvOption = (ListView) findViewById(R.id.lvOption);
 		ChiTagView filterLayout = (ChiTagView) findViewById(R.id.filterTags);
 		LayoutInflater li = getLayoutInflater();
 		
 		for(Iterator<Entry<String,Integer>> it = crUwPlaza.getRestaurantTypeAndCounts(); it.hasNext(); ){
 			Entry<String,Integer> entry = it.next();
-			String typeText = entry.getKey() + " (" + entry.getValue() + ")";
 			
-			TextView tagView = (TextView) li.inflate(R.layout.chi_tag, null);
-			
-			tagView.setText(typeText);
-			tagView.setBackgroundResource(R.drawable.chi_tag_shape_stateful);
-
-			tagView.setOnClickListener(new OnClickListener(){
-				public void onClick(View v) {
-					if(v.isSelected()){
-						v.setSelected(false);
-					}
-					else{
-						v.setSelected(true);
-					}
-				}
-			});
+			TextView tagView = ChiTagView.createChiTag(entry.getKey(), entry.getValue());
 			
 			filterLayout.setTag(tagView);
 		}
@@ -96,6 +79,9 @@ public class MainActivity extends Activity {
 	}
 
 	public void getNewRestaurant(View view) {
+		ChiTagView filterLayout = (ChiTagView) findViewById(R.id.filterTags);
+		this.crUwPlaza.filterRestaurants(filterLayout.getAllSelectedTags());
+		
 		ChiRestaurant crRandomRestaurant = this.crUwPlaza.getRandomRestaurant();
 
 		TextView textView = (TextView) findViewById(R.id.tvMainOutput);

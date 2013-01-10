@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -12,6 +13,7 @@ public class ChiRegion implements Serializable {
 	private String sName;
 	private String sRegiionType;
 	private ArrayList<ChiRestaurant> alResturants;
+	private ArrayList<ChiRestaurant> alResturantsFiltered;
 	private Map<String, Integer> hmResturantTypes = new TreeMap<String, Integer>();
 	
 	public ChiRegion(String sName, String sType){
@@ -81,12 +83,36 @@ public class ChiRegion implements Serializable {
 	}
 	//get a random restaurant in this region
 	public ChiRestaurant getRandomRestaurant(){
-		int iRegionSize = this.alResturants.size();
+		List<ChiRestaurant> lRestautrantSet = alResturants;
+		
+		if(alResturantsFiltered != null)
+			lRestautrantSet = alResturantsFiltered;
+			
+		int iRegionSize = lRestautrantSet.size();
 		int iKey = (int)(Math.random() * iRegionSize);
 		
-		return this.alResturants.get(iKey);
+		return lRestautrantSet.get(iKey);
 	}
+	
 	public Iterator<Entry<String, Integer>> getRestaurantTypeAndCounts(){
 		return hmResturantTypes.entrySet().iterator();
+	}
+	
+	public void filterRestaurants(List<String> lResTags){
+		if(lResTags.size() == 0)
+			alResturantsFiltered = null;
+		else{
+			alResturantsFiltered = new ArrayList<ChiRestaurant>();
+			for(ChiRestaurant restaurant : alResturants){
+				List<String> restTyps = restaurant.getTypes();
+				for(String tag : lResTags){
+					if(restTyps.contains(tag)){
+						alResturantsFiltered.add(restaurant);
+						break;
+					}
+				}
+			}
+		}
+		
 	}
 }
