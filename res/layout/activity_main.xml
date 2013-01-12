@@ -51,13 +51,31 @@
         android:layout_alignParentLeft="true"
         android:content="@+id/filterSliderContent"
         android:handle="@+id/filterSliderhandle"
-        android:layout_below="@+id/btnGetNew"  >
+        android:layout_below="@+id/btnGetNew"
+        android:layout_marginTop="10dp"  >
+		<!--
+        <LinearLayout
+            android:id="@+id/filterSliderhandle"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:dividerHeight="0dip" >
+		    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_filter_slider_handle_text" />
+		    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="clear" />
 
+		</LinearLayout> -->
+		
         <Button
             android:id="@+id/filterSliderhandle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/main_filter_slider_handle_text" />
+          
 
         <ScrollView 
             android:id="@+id/filterSliderContent"
