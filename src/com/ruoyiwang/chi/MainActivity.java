@@ -1,5 +1,10 @@
 package com.ruoyiwang.chi;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -17,6 +22,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.ruoyiwang.chi.model.ChiRegion;
 import com.ruoyiwang.chi.model.ChiRestaurant;
 import com.ruoyiwang.chi.view.ChiTagView;
@@ -61,8 +67,17 @@ public class MainActivity extends Activity {
 		return alListOfPlacesToEat;
 	}
 	private void loadUWRegion(){
+		/*
 		ChiRegion crUwPlaza = new ChiRegion("University Plaza", "plaza", getListOfPlacesToEat());
 		this.crUwPlaza = crUwPlaza;
+		}*/
+		
+		Gson gson = new Gson();
+		BufferedReader reader;
+		reader = new BufferedReader(
+		        new InputStreamReader(getResources().openRawResource(R.raw.uw_plaza)));
+		this.crUwPlaza = gson.fromJson(reader, ChiRegion.class);
+		
 	}
 
 	@Override
