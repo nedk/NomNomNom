@@ -70,6 +70,13 @@ public class MainActivity extends Activity {
 		/*
 		ChiRegion crUwPlaza = new ChiRegion("University Plaza", "plaza", getListOfPlacesToEat());
 		this.crUwPlaza = crUwPlaza;
+		
+		Gson gson = new Gson();
+		try {
+			System.out.println(new String(gson.toJson(crUwPlaza).getBytes(), "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}*/
 		
 		Gson gson = new Gson();
